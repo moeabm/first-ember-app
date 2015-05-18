@@ -45,7 +45,7 @@ module.exports = function(environment) {
 
   ENV.contentSecurityPolicy = {
     'default-src': "'none'",
-    'script-src': "'self'", 
+    'script-src': "'self' http://netdna.bootstrapcdn.com http://code.jquery.com/jquery.js", 
     'font-src': "'self' http://fonts.gstatic.com", // Allow fonts to be loaded from http://fonts.gstatic.com
     'connect-src': "'self'", 
     'img-src': "'self'",

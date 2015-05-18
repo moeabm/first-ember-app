@@ -393,9 +393,9 @@ define('my-app/templates/application', ['exports'], function (exports) {
       hasRendered: false,
       build: function build(dom) {
         var el0 = dom.createDocumentFragment();
-        var el1 = dom.createElement("header");
+        var el1 = dom.createElement("nav");
         dom.setAttribute(el1,"class","navbar navbar-inverse navbar-fixed-top bs-docs-nav");
-        dom.setAttribute(el1,"role","banner");
+        dom.setAttribute(el1,"role","navigation");
         var el2 = dom.createTextNode("\n  ");
         dom.appendChild(el1, el2);
         var el2 = dom.createElement("div");
@@ -410,7 +410,7 @@ define('my-app/templates/application', ['exports'], function (exports) {
         dom.setAttribute(el4,"class","navbar-toggle");
         dom.setAttribute(el4,"type","button");
         dom.setAttribute(el4,"data-toggle","collapse");
-        dom.setAttribute(el4,"data-target",".bs-navbar-collapse");
+        dom.setAttribute(el4,"data-target",".navbar-collapse");
         var el5 = dom.createTextNode("\n        ");
         dom.appendChild(el4, el5);
         var el5 = dom.createElement("span");
@@ -448,6 +448,7 @@ define('my-app/templates/application', ['exports'], function (exports) {
         var el3 = dom.createElement("nav");
         dom.setAttribute(el3,"class","collapse navbar-collapse bs-navbar-collapse");
         dom.setAttribute(el3,"role","navigation");
+        dom.setAttribute(el3,"id","dj-nav-bar");
         var el4 = dom.createTextNode("\n      ");
         dom.appendChild(el3, el4);
         var el4 = dom.createElement("ul");
@@ -753,7 +754,7 @@ catch(err) {
 if (runningTests) {
   require("my-app/tests/test-helper");
 } else {
-  require("my-app/app")["default"].create({"name":"my-app","version":"0.0.0.8401df5b"});
+  require("my-app/app")["default"].create({"name":"my-app","version":"0.0.0.9e6f38dd"});
 }
 
 /* jshint ignore:end */
