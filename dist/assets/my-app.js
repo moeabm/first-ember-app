@@ -21,6 +21,20 @@ define('my-app/app', ['exports', 'ember', 'ember/resolver', 'ember/load-initiali
   exports['default'] = App;
 
 });
+define('my-app/controllers/application', ['exports', 'ember'], function (exports, Ember) {
+
+  'use strict';
+
+
+  exports['default'] = Ember['default'].Controller.extend({
+
+    currentPathChanged: (function () {
+      window.scrollTo(0, 0);
+    }).observes("currentPath")
+
+  });
+
+});
 define('my-app/initializers/app-version', ['exports', 'my-app/config/environment', 'ember'], function (exports, config, Ember) {
 
   'use strict';
@@ -390,6 +404,42 @@ define('my-app/templates/application', ['exports'], function (exports) {
         }
       };
     }());
+    var child7 = (function() {
+      return {
+        isHTMLBars: true,
+        revision: "Ember@1.11.1",
+        blockParams: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        build: function build(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createTextNode(" Inquiry ");
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        render: function render(context, env, contextualElement) {
+          var dom = env.dom;
+          dom.detectNamespace(contextualElement);
+          var fragment;
+          if (env.useFragmentCache && dom.canClone) {
+            if (this.cachedFragment === null) {
+              fragment = this.build(dom);
+              if (this.hasRendered) {
+                this.cachedFragment = fragment;
+              } else {
+                this.hasRendered = true;
+              }
+            }
+            if (this.cachedFragment) {
+              fragment = dom.cloneNode(this.cachedFragment, true);
+            }
+          } else {
+            fragment = this.build(dom);
+          }
+          return fragment;
+        }
+      };
+    }());
     return {
       isHTMLBars: true,
       revision: "Ember@1.11.1",
@@ -422,13 +472,14 @@ define('my-app/templates/application', ['exports'], function (exports) {
         var el6 = dom.createElement("li");
         var el7 = dom.createElement("a");
         dom.setAttribute(el7,"href","tel:+16613307064");
-        var el8 = dom.createTextNode("(661)330-7064");
+        var el8 = dom.createTextNode("(661) 330-7064");
         dom.appendChild(el7, el8);
         dom.appendChild(el6, el7);
         dom.appendChild(el5, el6);
         var el6 = dom.createTextNode("\n			");
         dom.appendChild(el5, el6);
         var el6 = dom.createElement("li");
+        dom.setAttribute(el6,"class","navbar-right");
         var el7 = dom.createElement("a");
         dom.setAttribute(el7,"href","mailto:kreynolds@bak.rr.com");
         var el8 = dom.createTextNode("kreynolds@bak.rr.com");
@@ -568,6 +619,17 @@ define('my-app/templates/application', ['exports'], function (exports) {
         var el7 = dom.createTextNode("\n        ");
         dom.appendChild(el6, el7);
         dom.appendChild(el5, el6);
+        var el6 = dom.createTextNode("\n        ");
+        dom.appendChild(el5, el6);
+        var el6 = dom.createElement("li");
+        dom.setAttribute(el6,"class","");
+        var el7 = dom.createTextNode("\n          ");
+        dom.appendChild(el6, el7);
+        var el7 = dom.createComment("");
+        dom.appendChild(el6, el7);
+        var el7 = dom.createTextNode("\n        ");
+        dom.appendChild(el6, el7);
+        dom.appendChild(el5, el6);
         var el6 = dom.createTextNode("\n      ");
         dom.appendChild(el5, el6);
         dom.appendChild(el4, el5);
@@ -623,7 +685,8 @@ define('my-app/templates/application', ['exports'], function (exports) {
         var morph4 = dom.createMorphAt(dom.childAt(element1, [7]),1,1);
         var morph5 = dom.createMorphAt(dom.childAt(element1, [9]),1,1);
         var morph6 = dom.createMorphAt(dom.childAt(element1, [11]),1,1);
-        var morph7 = dom.createMorphAt(fragment,2,2,contextualElement);
+        var morph7 = dom.createMorphAt(dom.childAt(element1, [13]),1,1);
+        var morph8 = dom.createMorphAt(fragment,2,2,contextualElement);
         block(env, morph0, context, "link-to", ["index"], {"class": "navbar-brand text-scale"}, child0, null);
         block(env, morph1, context, "link-to", ["service"], {}, child1, null);
         block(env, morph2, context, "link-to", ["music"], {}, child2, null);
@@ -631,7 +694,8 @@ define('my-app/templates/application', ['exports'], function (exports) {
         block(env, morph4, context, "link-to", ["faq"], {}, child4, null);
         block(env, morph5, context, "link-to", ["shopping"], {}, child5, null);
         block(env, morph6, context, "link-to", ["about"], {}, child6, null);
-        content(env, morph7, context, "outlet");
+        block(env, morph7, context, "link-to", ["about"], {}, child7, null);
+        content(env, morph8, context, "outlet");
         return fragment;
       }
     };
@@ -1086,7 +1150,7 @@ define('my-app/templates/faq', ['exports'], function (exports) {
         var el2 = dom.createTextNode("\n  ");
         dom.appendChild(el1, el2);
         var el2 = dom.createElement("h3");
-        var el3 = dom.createTextNode("Listed below are a few of the most frequently asked questions that have been asked of \n			Keith. If you have any questions that are not covered here, please feel free to ask.");
+        var el3 = dom.createTextNode("Listed below are the most frequently asked questions Keith has received. If you have any questions that are not covered here, please feel free to ask!");
         dom.appendChild(el2, el3);
         dom.appendChild(el1, el2);
         var el2 = dom.createTextNode("\n			");
@@ -1112,7 +1176,7 @@ define('my-app/templates/faq', ['exports'], function (exports) {
         var el4 = dom.createTextNode("\n			");
         dom.appendChild(el3, el4);
         var el4 = dom.createElement("p");
-        var el5 = dom.createTextNode("A: Keith's DJ Service has only one DJ--Keith Reynolds. Since I am the owner, you will get   the extra effort that you can't get with an employee from another company.");
+        var el5 = dom.createTextNode("A: Keith's DJ Service has only one DJ - Keith Reynolds. Since he is the owner, you will get   the extra effort that you cannot get with an employee from another company.");
         dom.appendChild(el4, el5);
         dom.appendChild(el3, el4);
         var el4 = dom.createTextNode("\n		");
@@ -1147,14 +1211,14 @@ define('my-app/templates/faq', ['exports'], function (exports) {
         dom.appendChild(el3, el4);
         var el4 = dom.createElement("p");
         var el5 = dom.createElement("strong");
-        var el6 = dom.createTextNode("Q: Can I   meet with \n					Keith, before making my decision?");
+        var el6 = dom.createTextNode("Q: Can I   meet with \n					Keith before making my decision?");
         dom.appendChild(el5, el6);
         dom.appendChild(el4, el5);
         dom.appendChild(el3, el4);
         var el4 = dom.createTextNode("\n			");
         dom.appendChild(el3, el4);
         var el4 = dom.createElement("p");
-        var el5 = dom.createTextNode("A: Yes.   You will feel much more confident about your decision if you meet your   entertainer face to face.");
+        var el5 = dom.createTextNode("A: Yes.   You will feel much more confident about your decision if you meet your   entertainer face-to-face.");
         dom.appendChild(el4, el5);
         dom.appendChild(el3, el4);
         var el4 = dom.createTextNode("\n		");
@@ -1175,7 +1239,7 @@ define('my-app/templates/faq', ['exports'], function (exports) {
         var el4 = dom.createTextNode("\n			");
         dom.appendChild(el3, el4);
         var el4 = dom.createElement("p");
-        var el5 = dom.createTextNode("A: Yes, but Keith does not recommend it at a wedding reception. It can draw attention   away from where it should be, the Bride and Groom.");
+        var el5 = dom.createTextNode("A: Yes, but Keith does not recommend it at a wedding reception. It can draw attention   away from where it should be - on the bride and groom.");
         dom.appendChild(el4, el5);
         dom.appendChild(el3, el4);
         var el4 = dom.createTextNode("\n		");
@@ -1196,7 +1260,7 @@ define('my-app/templates/faq', ['exports'], function (exports) {
         var el4 = dom.createTextNode("\n			");
         dom.appendChild(el3, el4);
         var el4 = dom.createElement("p");
-        var el5 = dom.createTextNode("A: There is no charge for either except in extreme circumstances, i.e.: no   elevator access to an upstairs event, or an event that requires extensive   travel.");
+        var el5 = dom.createTextNode("A: There is no charge for either except in extreme circumstances, i.e.: no   elevator access to an upstairs event or an event that requires extensive   travel.");
         dom.appendChild(el4, el5);
         dom.appendChild(el3, el4);
         var el4 = dom.createTextNode("\n		");
@@ -1210,7 +1274,7 @@ define('my-app/templates/faq', ['exports'], function (exports) {
         dom.appendChild(el3, el4);
         var el4 = dom.createElement("p");
         var el5 = dom.createElement("strong");
-        var el6 = dom.createTextNode("Q: Do you   have backup equipment?");
+        var el6 = dom.createTextNode("Q: Do you   have back-up equipment?");
         dom.appendChild(el5, el6);
         dom.appendChild(el4, el5);
         dom.appendChild(el3, el4);
@@ -1238,7 +1302,7 @@ define('my-app/templates/faq', ['exports'], function (exports) {
         var el4 = dom.createTextNode("\n			");
         dom.appendChild(el3, el4);
         var el4 = dom.createElement("p");
-        var el5 = dom.createTextNode("A: Keith love’s a good party, and would \n					be happy to stay. But, If you are having an afternoon event, \n					Keith suggests that you schedule enough time when you   sign our contract. He may have an evening event scheduled, and we would hate to   end your event prematurely.");
+        var el5 = dom.createTextNode("A: Keith loves a good party and would \n					be happy to stay. If you are having an afternoon event, \n					Keith suggests that you schedule enough time when you sign our contract; he may have an evening event scheduled and would hate to   end your event prematurely.");
         dom.appendChild(el4, el5);
         dom.appendChild(el3, el4);
         var el4 = dom.createTextNode("\n		");
@@ -1259,14 +1323,14 @@ define('my-app/templates/faq', ['exports'], function (exports) {
         dom.appendChild(el3, el4);
         var el4 = dom.createElement("p");
         var el5 = dom.createElement("strong");
-        var el6 = dom.createTextNode("Q: If   something happened to my D.J., who would do my wedding?");
+        var el6 = dom.createTextNode("Q: If   something happened to my DJ, who would do my wedding?");
         dom.appendChild(el5, el6);
         dom.appendChild(el4, el5);
         dom.appendChild(el3, el4);
         var el4 = dom.createTextNode("\n			");
         dom.appendChild(el3, el4);
         var el4 = dom.createElement("p");
-        var el5 = dom.createTextNode("A: It would take something very \n					debilitating to keep Keith from entertaining   at your wedding. In the event this should happen, he has qualified personnel who   could be called in as back-ups");
+        var el5 = dom.createTextNode("A: It would take something very \n					debilitating to keep Keith from entertaining   at your wedding. In the event that this should happen, he has qualified personnel who   could be called in as back-ups.");
         dom.appendChild(el4, el5);
         dom.appendChild(el3, el4);
         var el4 = dom.createTextNode("\n		");
@@ -1301,14 +1365,14 @@ define('my-app/templates/faq', ['exports'], function (exports) {
         dom.appendChild(el3, el4);
         var el4 = dom.createElement("p");
         var el5 = dom.createElement("strong");
-        var el6 = dom.createTextNode("Q: If I   want a song that you do not have, can I loan you my copy?");
+        var el6 = dom.createTextNode("Q: If I   want a song played that you do not have, can I loan you my copy?");
         dom.appendChild(el5, el6);
         dom.appendChild(el4, el5);
         dom.appendChild(el3, el4);
         var el4 = dom.createTextNode("\n			");
         dom.appendChild(el3, el4);
         var el4 = dom.createElement("p");
-        var el5 = dom.createTextNode("A: Yes, Keith can play your compact disc or your mp3 file. But, if your song   is on a record or cassette, he would need it at least a week in advance to   record it for play.");
+        var el5 = dom.createTextNode("A: Yes, Keith can play your compact disc or your mp3 file. If your song   is on a record or cassette, he would need it at least a week in advance to   record it for play.");
         dom.appendChild(el4, el5);
         dom.appendChild(el3, el4);
         var el4 = dom.createTextNode("\n		");
@@ -1329,7 +1393,7 @@ define('my-app/templates/faq', ['exports'], function (exports) {
         var el4 = dom.createTextNode("\n			");
         dom.appendChild(el3, el4);
         var el4 = dom.createElement("p");
-        var el5 = dom.createTextNode("A: No! You will have continuous music from the scheduled to start time until   it's time to end.");
+        var el5 = dom.createTextNode("A: No! You will have continuous music from the scheduled start time until   it's time to end.");
         dom.appendChild(el4, el5);
         dom.appendChild(el3, el4);
         var el4 = dom.createTextNode("\n		");
@@ -1350,7 +1414,7 @@ define('my-app/templates/faq', ['exports'], function (exports) {
         var el4 = dom.createTextNode("\n			");
         dom.appendChild(el3, el4);
         var el4 = dom.createElement("p");
-        var el5 = dom.createTextNode("A: Whatever you want Keith to play. The \n					only exclusions are songs with explicit lyrics in them. \n					I will not play if minors are present.");
+        var el5 = dom.createTextNode("A: Whatever you want Keith to play. The \n					only exclusions are songs with explicit lyrics; he will not play them if minors are present.");
         dom.appendChild(el4, el5);
         dom.appendChild(el3, el4);
         var el4 = dom.createTextNode("\n		");
@@ -1371,7 +1435,7 @@ define('my-app/templates/faq', ['exports'], function (exports) {
         var el4 = dom.createTextNode("\n			");
         dom.appendChild(el3, el4);
         var el4 = dom.createElement("p");
-        var el5 = dom.createTextNode("A: Keith has a separate sound systems just for ceremony music. If your   ceremony is in a remote area where there is no electricity available, his   ceremony system can have it's own power source.");
+        var el5 = dom.createTextNode("A: Keith has a separate sound system just for ceremony music. If your   ceremony is in a remote area where there is no electricity available, his   ceremony system can have its own power source.");
         dom.appendChild(el4, el5);
         dom.appendChild(el3, el4);
         var el4 = dom.createTextNode("\n		");
@@ -1427,14 +1491,14 @@ define('my-app/templates/faq', ['exports'], function (exports) {
         dom.appendChild(el3, el4);
         var el4 = dom.createElement("p");
         var el5 = dom.createElement("strong");
-        var el6 = dom.createTextNode("Q: What   payment types do you accept?");
+        var el6 = dom.createTextNode("Q: What   types of payment do you accept?");
         dom.appendChild(el5, el6);
         dom.appendChild(el4, el5);
         dom.appendChild(el3, el4);
         var el4 = dom.createTextNode("\n			");
         dom.appendChild(el3, el4);
         var el4 = dom.createElement("p");
-        var el5 = dom.createTextNode("A: Keith accepts checks and cash. If you wish to pay with your credit card,   you can do so through PayPal. Please call or email for details.");
+        var el5 = dom.createTextNode("A: Keith accepts checks and cash. If you wish to pay with your credit card,   you can do so through PayPal. Please call or e-mail for details.");
         dom.appendChild(el4, el5);
         dom.appendChild(el3, el4);
         var el4 = dom.createTextNode("\n		");
@@ -1504,41 +1568,42 @@ define('my-app/templates/index', ['exports'], function (exports) {
         dom.appendChild(el1, el2);
         var el2 = dom.createElement("div");
         dom.setAttribute(el2,"class","col-md-8");
-        var el3 = dom.createTextNode("\n      ");
+        var el3 = dom.createTextNode("\n        ");
         dom.appendChild(el2, el3);
         var el3 = dom.createElement("div");
-        dom.setAttribute(el3,"class","col-md-12 text-center");
+        dom.setAttribute(el3,"class","col-md-12 halfpad ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n        ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("div");
+        dom.setAttribute(el3,"class","col-md-8");
+        var el4 = dom.createTextNode("\n          ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("h1");
+        dom.setAttribute(el4,"class","text-scale front");
+        var el5 = dom.createTextNode("The Right Entertainer");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createElement("br");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createTextNode("\n          for");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createElement("br");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createTextNode("\n          The Right Reasons");
+        dom.appendChild(el4, el5);
+        dom.appendChild(el3, el4);
         var el4 = dom.createTextNode("\n        ");
         dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n\n        ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("div");
+        dom.setAttribute(el3,"class","col-md-4");
         var el4 = dom.createElement("div");
-        dom.setAttribute(el4,"class","col-md-8");
-        var el5 = dom.createTextNode("\n          ");
-        dom.appendChild(el4, el5);
-        var el5 = dom.createElement("h2");
-        dom.setAttribute(el5,"class","text-scale front");
-        var el6 = dom.createTextNode("The Right Entertainer");
-        dom.appendChild(el5, el6);
-        var el6 = dom.createElement("br");
-        dom.appendChild(el5, el6);
-        var el6 = dom.createTextNode("\n          for");
-        dom.appendChild(el5, el6);
-        var el6 = dom.createElement("br");
-        dom.appendChild(el5, el6);
-        var el6 = dom.createTextNode("\n          The Right Reasons");
-        dom.appendChild(el5, el6);
-        dom.appendChild(el4, el5);
-        var el5 = dom.createTextNode("\n        ");
-        dom.appendChild(el4, el5);
-        dom.appendChild(el3, el4);
-        var el4 = dom.createTextNode("\n\n        ");
-        dom.appendChild(el3, el4);
-        var el4 = dom.createElement("div");
-        dom.setAttribute(el4,"class","col-md-4");
+        dom.setAttribute(el4,"class","front front-img");
         var el5 = dom.createElement("img");
-        dom.setAttribute(el5,"src","images/Keith.jpg");
+        dom.setAttribute(el5,"src","images/Keith.png");
         dom.appendChild(el4, el5);
-        dom.appendChild(el3, el4);
-        var el4 = dom.createTextNode("\n      ");
         dom.appendChild(el3, el4);
         dom.appendChild(el2, el3);
         var el3 = dom.createTextNode("\n    ");
@@ -1566,28 +1631,22 @@ define('my-app/templates/index', ['exports'], function (exports) {
         dom.appendChild(el0, el1);
         var el1 = dom.createElement("div");
         dom.setAttribute(el1,"class","col-md-8 pagetall");
-        var el2 = dom.createTextNode("\n    ");
+        var el2 = dom.createTextNode("\n\n    ");
         dom.appendChild(el1, el2);
         var el2 = dom.createElement("p");
-        var el3 = dom.createTextNode("When planning a wedding or private party, hours are spent putting the details together as to when certain events will happen, and who is involved. Your event can be well planned out in\n    advance, but the one item that cannot be planned is how your guests will react to the music you have selected.");
+        var el3 = dom.createTextNode("When selecting who to hire to present your music and be your entertainer for a wedding or private party, there are a few factors to consider. Does the DJ have the personality you want to represent you at your event?\n    Will they keep your event running smoothly? Do they have the right equipment and music available to fit the needs of your party?");
         dom.appendChild(el2, el3);
         dom.appendChild(el1, el2);
         var el2 = dom.createTextNode("\n\n    ");
         dom.appendChild(el1, el2);
         var el2 = dom.createElement("p");
-        var el3 = dom.createTextNode("When considering who you hire to present your music, and be your entertainer, there are a few factors to consider: Do they have the personality you want to represent you at your event?\n    Will they keep your event running smoothly? Do they have the music available that fits the party? Do they have the right equipment to fit the needs of your event? These are all good\n    questions, but the most important question is do they have the experience to adjust to the atmosphere of your wedding or party, and tailor the music to what will get your guests out of their\n    chairs an onto the dance floor.");
+        var el3 = dom.createTextNode("Keith's DJ Service has the answers to all these questions and more. With Keith Reynolds as your entertainer you will have his outgoing personality to represent you, his ability to keep\n    your event on track by working with your vendors as a team, his music library which ranges from the 1940's up to the cutting edge of tomorrow's hits, and his completely\n    digital, state-of-the-art sound system assured to get your guests out of their chairs and onto the dance floor.");
         dom.appendChild(el2, el3);
         dom.appendChild(el1, el2);
         var el2 = dom.createTextNode("\n\n    ");
         dom.appendChild(el1, el2);
         var el2 = dom.createElement("p");
-        var el3 = dom.createTextNode("Keith's DJ Service has the answers to all those questions and more. With Keith Reynolds as your entertainer, you will have his outgoing personality to represent you; his ability to keep\n    your event on track by working with all your vendors so they all work as a team; his music library which ranges from the 1940s up to the cutting edge of tomorrow's hits; and his completely\n    digital cutting edge sound system.");
-        dom.appendChild(el2, el3);
-        dom.appendChild(el1, el2);
-        var el2 = dom.createTextNode("\n\n    ");
-        dom.appendChild(el1, el2);
-        var el2 = dom.createElement("p");
-        var el3 = dom.createTextNode("When choosing an entertainer for your special event, make sure you make the right choice for the right reason.");
+        var el3 = dom.createTextNode("When choosing an entertainer for your special event, make sure you make the right choice for the right reasons.");
         dom.appendChild(el2, el3);
         dom.appendChild(el1, el2);
         var el2 = dom.createTextNode("\n  ");
@@ -7288,6 +7347,16 @@ define('my-app/tests/app.jshint', function () {
   });
 
 });
+define('my-app/tests/controllers/application.jshint', function () {
+
+  'use strict';
+
+  module('JSHint - controllers');
+  test('controllers/application.js should pass jshint', function() { 
+    ok(false, 'controllers/application.js should pass jshint.\ncontrollers/application.js: line 2, col 1, \'import\' is only available in ES6 (use esnext option).\ncontrollers/application.js: line 5, col 1, \'export\' is only available in ES6 (use esnext option).\n\n2 errors'); 
+  });
+
+});
 define('my-app/tests/helpers/resolver', ['exports', 'ember/resolver', 'my-app/config/environment'], function (exports, Resolver, config) {
 
   'use strict';
@@ -7443,7 +7512,7 @@ catch(err) {
 if (runningTests) {
   require("my-app/tests/test-helper");
 } else {
-  require("my-app/app")["default"].create({"name":"my-app","version":"0.0.0.9e6f38dd"});
+  require("my-app/app")["default"].create({"name":"my-app","version":"0.0.0.2a012d5a"});
 }
 
 /* jshint ignore:end */

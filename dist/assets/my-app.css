@@ -3,27 +3,13 @@
 }
 
 .navbar-inverse .navbar-nav a.active {
-	color:#fff
+	color:#ff2d95
+}
+.navbar-inverse .navbar-nav a.active:focus {
+	color:#ff2d95
 }
 
 .navbar-inverse .navbar-nav>.active>a:hover,.navbar-inverse .navbar-nav>li>a:hover {
-	-moz-border-radius:8px;
-	-webkit-border-radius:8px;
-	-o-border-radius:8px;
-	-ms-border-radius:8px;
-	-khtml-border-radius:8px;
-	border-radius:8px;
-	background-color:#FABD00;
-	background:-webkit-gradient(linear,50% 0%,50% 100%,color-stop(0%,#3cace2),color-stop(70%,#E8E84E));
-	background:-webkit-linear-gradient(#0B0912,#E8E84E 70%);
-	background:-moz-linear-gradient(#0B0912,#E8E84E 70%);
-	background:-o-linear-gradient(#0B0912,#E8E84E 70%);
-	background:-ms-linear-gradient(#0B0912,#E8E84E 70%);
-	background:linear-gradient(#0B0912,#E8E84E 90%);
-	-moz-box-shadow:#E8E84E 0 1px 0 inset;
-	-webkit-box-shadow:#E8E84E 0 1px 0 inset;
-	-o-box-shadow:#E8E84E 0 1px 0 inset;
-	box-shadow:#E8E84E 0 1px 0 inset;
 	color:#fff;
 	text-shadow:#135f83 0 -1px 0
 }
@@ -36,9 +22,6 @@
 	background-color:#FFF
 }
 
-.dropdown-menu>li>a:hover,.dropdown-menu>li>a:focus {
-	background-color:#FFC000
-}
 
 .navbar-inverse {
 	background-image:none
@@ -49,9 +32,12 @@
 }
 
 .navbar-inverse {
-	border-color:#080808
+	border-color:#080808;
 }
 
+.navbar-inverse .navbar-header {
+	padding-top: 40px;
+}
 .navbar-inverse .navbar-brand {
 	color:#000;
 	text-shadow:0 0 5px #fff,0 0 10px #fff,0 0 15px #ff2d95;
@@ -59,35 +45,23 @@
 	margin-bottom:10px;
 	font-family:'Bangers',cursive;
 	font-size:48pt;
-	font-size:3.8vmax;
+	/*font-size:3.8vmax;*/
 }
 
 .navbar-inverse .navbar-brand:hover {
 	color:#FFF
 }
 
-.navbar-inverse .navbar-nav>li>a {
-	color:#999
-}
-
-.navbar-inverse .navbar-nav>li>a:hover,.navbar-inverse .navbar-nav>li>a:focus {
-	color:#FFF
-}
-
-.navbar-inverse .navbar-nav>.active>a,.navbar-inverse .navbar-nav>.open>a,.navbar-inverse .navbar-nav>.open>a:hover,.navbar-inverse .navbar-nav>.open>a:focus {
-	color:#FFF
+.navbar-inverse .navbar-nav>.active>a,.navbar-inverse .navbar-nav>.open>a,.navbar-inverse .navbar-nav>.open>a:hover {
+	color:#ff2d95
 }
 
 .navbar-inverse .navbar-nav>.active>a:hover,.navbar-inverse .navbar-nav>.active>a:focus {
-	color:#FFF
+	color:#ff2d95
 }
 
 .dropdown-menu>li>a {
 	color:#333
-}
-
-.dropdown-menu>li>a:hover,.dropdown-menu>li>a:focus {
-	color:#FFF
 }
 
 .navbar-inverse .navbar-nav>.dropdown>a .caret {
@@ -160,6 +134,8 @@
 }
 
 body {
+	font-family: 'Open Sans', sans-serif;
+	font-size: 14pt;
 	min-height:200px;
 	padding-top:80px;
 	background:#3F5C9B;
@@ -170,6 +146,10 @@ hr {
 	margin:5px;
 	color:#EEF1F6;
 	height:1px
+}
+
+p {
+	margin-bottom: 20px;
 }
 
 .display {
@@ -215,8 +195,9 @@ hr {
 }
 
 .contact {
-	text-align:right;
-	padding-right:20%
+	float: right;
+	padding-right:5%;
+	font-size: 20pt;
 }
 
 .contact a {
@@ -229,7 +210,7 @@ hr {
 	-moz-background-size:cover;
 	-o-background-size:cover;
 	background-size:cover;
-	height:calc(100vh - 180px);
+	min-height:calc(100vh - 10vh - 80px);
 	border-bottom:0 solid #010002;
 	padding-top:20px
 }
@@ -241,18 +222,33 @@ hr {
 	background:linear-gradient(180deg,#010002 30%,rgba(0,0,0,0) 90%)
 }
 
-.splash div:nth-child(2) {
-	height:100%;
-	display:flex;
-	align-items:center
+.splash>div:nth-child(2) {
+    height:100%;
+}
+
+.splash .halfpad{
+	height: 20vh;
 }
 
 .front {
 	font-family:'Passion One',cursive;
 	letter-spacing:1px;
 	color:#fff;
+	/*background-color: rgba(55,55,55,0.3);*/
 	text-shadow:3px 3px 0 #2c2e38,5px 5px 0 #5c5f72;
-	box-shadow: 0 0 45px #000000,0px 0 45px #000000,0px 0 25px #000000,0px 0 25px #333,0px 0 25px #000
+	/*box-shadow: 0 0 45px #000000,0px 0 45px #000000,0px 0 25px #000000,0px 0 25px #333,0px 0 25px #000;*/
+}
+
+.front-img{
+	border-radius: 10px;
+	margin: auto;
+	height: 250px;
+	width: 280px;
+	overflow: hidden;
+}
+
+.front-img img{
+	width: 100%;
 }
 
 .pagetall {
@@ -270,12 +266,48 @@ hr {
 	margin-bottom:20px
 }
 
-@media (max-width: 768px) {
+@media (max-width: 992px) {
+
 	.navbar-inverse .navbar-brand {
-		margin-bottom:0
+		font-size: 24pt;
+	}
+}
+@media (max-width: 768px) {
+
+	body {
+		min-height:200px;
+		padding-top:30px;
+	}
+
+	.navbar-inverse .navbar-brand {
+		margin-bottom:0;
+		font-size: 24pt;
+	}
+
+	.navbar-inverse .navbar-header {
+		padding-top:0px;
 	}
 
 	.contact {
 		display:none
 	}
+
+	.splash .halfpad{
+		height: 10vh;
+	}
+
+	.text-scale {
+		font-size:7vw;
+	}
+
+	.front-img{
+		height: 125px;
+		width: 140px;
+	}
+
 }
+
+/*
+div {
+	border: 1px solid black;
+}*/
